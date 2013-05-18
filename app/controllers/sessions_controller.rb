@@ -19,8 +19,8 @@ class SessionsController < ApplicationController
 
   def destroy
     flash[:notice] = "Logged out #{current_user.username}"
-      sign_out_user
-      redirect_to new_session_path
+    sign_out_user current_user
+    redirect_to new_session_path
   end
 
 end

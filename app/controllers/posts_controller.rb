@@ -6,11 +6,13 @@ class PostsController < ApplicationController
   # GET /posts
   # GET /posts.json
   def index
-    @posts = Post.all
 
     respond_to do |format|
-      format.html # index.html.erb
+      format.html {
+        @posts = Post.all
+      }
       format.json { 
+        @posts = User.where(username: 'goggin13')[0].posts
         render json: @posts, :callback => params[:callback]
       }
     end
