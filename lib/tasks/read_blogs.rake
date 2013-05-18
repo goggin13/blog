@@ -4,7 +4,7 @@ namespace :db do
   desc "read blogs from blogs directory"
   
   task read_blogs: :environment do
-    user = User.find('goggin13')
+    user = User.where(username: 'goggin13')[0]
     unless user
       user = User.create! username: 'goggin13', password: 'password'
     end
