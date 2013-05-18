@@ -12,7 +12,9 @@ class PostsController < ApplicationController
         @posts = Post.all
       }
       format.json { 
-        @posts = User.where(username: 'goggin13')[0].posts
+        @posts = User.where(username: 'goggin13')[0].posts.sort do |a,b|
+          a.published <=> b.published
+        end
         render json: @posts, :callback => params[:callback]
       }
     end

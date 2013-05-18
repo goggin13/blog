@@ -17,6 +17,10 @@
    <%= link_to 'Sign up', new_user_path %>
 <% end %>
 
+    <% flash.each do |key, value| %>
+      <div class="alert alert-<%= key %>"><%= value %></div>
+    <% end %> 
+
 <%= yield %>
 
 </body>

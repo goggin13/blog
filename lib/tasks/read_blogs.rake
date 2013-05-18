@@ -17,8 +17,12 @@ namespace :db do
       system("curl #{url} >> #{i}.md")
       lines = File.readlines(file).to_a
       system("rm #{file}")
+
       title = lines[0].sub("# ", "")
-      post = user.posts.build title: title, content: lines[2..lines.length].join("\n")
+      published = lines[1].sub("# ", "").to_time
+      post = user.posts.build title: title, 
+                              content: lines[3..lines.length].join("\n"),
+                              published: published
       if post.save
         puts "saved #{post.title}"
       else
